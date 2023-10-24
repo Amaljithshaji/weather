@@ -10,7 +10,7 @@ class Contoller {
   // ignore: prefer_typing_uninitialized_variables
   final api;
   Contoller({required this.api});
-  fetchweatherdata(String cityName) async {
+  Future<WeatherApi> fetchweatherdata(String cityName) async {
     var response = await http.get(Uri.parse('$url?q=$cityName&appid=$api'));
     var decodedata = jsonDecode(response.body);
     if (response.statusCode == 200) {
@@ -20,7 +20,7 @@ class Contoller {
     }
   }
 
-  getLoction() async {
+  getLoctionz() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
